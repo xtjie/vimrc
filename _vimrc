@@ -1,4 +1,4 @@
-source $VIMRUNTIME/vimrc_example.vim
+
 source $VIMRUNTIME/mswin.vim
 behave mswin
 " Avoid garbled characters in Chinese language windows OS
@@ -14,7 +14,7 @@ filetype plugin on
 let mapleader = ","
 let g:mapleader = ","
 
-source$VIM/vimrc_self.vim
+source $VIM/vimrc_self.vim
 
 set number
 set numberwidth=4
@@ -132,7 +132,7 @@ Plug 'terryma/vim-multiple-cursors'
 " }
 
 " git integration, :Gvdiff command is extremely useful
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " }
 
@@ -144,7 +144,6 @@ Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-syntastic/syntastic'
 
-Plug 'w0rp/ale'
 
 " surround stuff with other stuff
 Plug 'tpope/vim-surround'
@@ -153,8 +152,10 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-
+"Plug 'chriskempson / tomorrow-theme'
 
 " the famous emmet, for html
 "Plug 'mattn/emmet-vim'
@@ -219,7 +220,7 @@ let NERDTreeIgnore = ['\.pyc$', '__pycache__','\.snippet\~','\~$']
 let g:NERDTreeWinSize=35
 let NERDTreeShowBookmarks=1
 let g:NERDTreeShowLineNumbers=1  
-let g:NERDTreeBookmarksFile=$VIM.'/bookmarks.txt'
+let NERDTreeBookmarksFile= $VIM.'\NerdBookmarks.txt'
 
 
 map <silent><F2>  :NERDTreeToggle<cr>
@@ -288,56 +289,4 @@ let g:NERDCompactSexyComs = 1
 "Ultisnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips","MyUltiSnips"]
 
-"ALE air line 
-
-
-"ale
-"始终开启标志列
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
-"自定义error和warning图标
-let g:ale_sign_error = '?'
-let g:ale_sign_warning = '?'
-"在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['? %d', '? %d', '? OK']
-"显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"普通模式下，fp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
-"设置状态栏显示的内容
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%y/%m/%d\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
-"文件内容发生变化时不进行检查
-let g:ale_lint_on_text_changed = 'never'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-
-" Write this in your vimrc file
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-let g:ale_open_list = 1
-" Set this if you want to.
-" This can be useful if you are combining ALE with
-" some other plugin which sets quickfix errors, etc.
-let g:ale_keep_list_window_open = 1
-
-" Check Python files with flake8 and pylint.
-let b:ale_linters = ['flake8', 'pylint']
-" Fix Python files with autopep8 and yapf.
-let b:ale_fixers = ['autopep8', 'yapf']
-" Disable warnings about trailing whitespace for Python files.
-let b:ale_warn_about_trailing_whitespace = 0
-
-"禁用某个Linter，比如下面的设置禁用了javascript的eslint
-
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
 

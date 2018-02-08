@@ -21,6 +21,7 @@ set numberwidth=4
 set nocompatible
 set autoread
 set mouse =a
+set encoding=utf-8
 
 set noswapfile
 
@@ -120,7 +121,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ctrlpvim/ctrlp.vim'
 " yankring inside ctrlp, as an extension
 "
-Plug 'szw/vim-maximizer'
+"Plug 'szw/vim-maximizer'
 
 " close quickfix window when quit parent window
 "Plug 'romainl/vim-qf'
@@ -144,6 +145,7 @@ Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-syntastic/syntastic'
 
+Plug 'Chiel92/vim-autoformat'
 
 " surround stuff with other stuff
 Plug 'tpope/vim-surround'
@@ -234,13 +236,14 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F8单独切换打开taglist（taglist插件） 
 let g:Tlist_Ctags_Cmd = $VIM.'\ctags.exe' 
-let g:Tlist_Sort_Type = 'name'          "以名称顺序排序，默认以位置顺序(order) 
+"let g:Tlist_Sort_Type = 'name'          "以名称顺序排序，默认以位置顺序(order) 
 let g:Tlist_Show_One_File = 1           "不同时显示多个文件的tag，只显示当前文件的 
 let g:Tlist_Exit_OnlyWindow = 1         "如果taglist窗口是最后一个窗口，则退出vim 
-lef g:Tlist_File_Fold_Auto_Close = 1    "当光标不在编辑文件里面的时候全部折叠 
+"lef g:Tlist_File_Fold_Auto_Close = 1    "当光标不在编辑文件里面的时候全部折叠 
 let g:Tlist_Use_Right_Window = 1        "在右侧窗口中显示taglist窗口 
 let g:Tlist_Enable_Fold_Column = 1      "显示折叠边栏 
-
+let g:Tlist_WinWidth = 50
+let Tlist_WinHeight =50
 let Tlist_Hightlight_Tag_On_BufEnter = 1  
 let Tlist_Process_File_Always = 1  
 let Tlist_Display_Prototype = 0  
@@ -265,17 +268,6 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic (syntax checker)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python
-let g:syntastic_python_checkers=['pyflakes']
-
-" Javascript
-"let g:syntastic_javascript_checkers = ['jshint']
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "NERDComment {
 " Add spaces after comment delimiters by default
@@ -289,4 +281,30 @@ let g:NERDCompactSexyComs = 1
 "Ultisnips
 let g:UltiSnipsSnippetDirectories=["UltiSnips","MyUltiSnips"]
 
+"Syntastic 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+"vim-autoformat
+
+noremap <F3> :Autoformat<CR>:w<CR>
+let g:syntastic_python_checkers= ['F:\Python36-32\Scripts\yapf.exe']
+let g:syntastic_check_on_open = 0
